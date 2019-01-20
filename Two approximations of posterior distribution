@@ -1,0 +1,49 @@
+# plot the normal approximation along with the normalized likelihood.
+# Find if the normal approximation appropriate in this case.
+
+x=c(125,18,20,34)
+theta=0.6268215
+sigma2=1/(x[1]/((2+theta)^2)+x[4]/(theta^2)+(x[2]+x[3])/((1-theta)^2))
+
+#set theta's prior distribution is U(0,1)
+#use data augmentation algorithm to find the posteriori distribution of theta (Mixed beta distribution)
+
+pdf_beta<-function(x1,x2,x3,x4,t,m,N){
+  #m is the sample size in data posteriori distribution 
+  #form the evenly spaced sequence between 0 and 1 to calculate the density of posterior distribution
+  x=seq(0,1,length.out = N)
+  p=t/(t+2)
+  for(i in 1:m){
+    z=rbinom(1,x1,p)
+    a=z+x4+1
+    b=x2+x3+1
+    pdf1=dbeta(x,a,b)
+    if(i==1){
+      pdf_data=pdf1
+    }else{
+      pdf_data=cbind(pdf_data,pdf1)
+    }
+  }
+  pdf=data.frame(pdf=apply(pdf_data,1,mean))
+  return(pdf)
+}
+m=1500
+N=5000
+data1=pdf_beta(125,18,20,34,theta,m,N)
+x1=seq(0,1,length.out = N)
+data1=data.frame(times=x1,beta=data1$pdf)
+
+#Generate a sample of the normal approximation
+#N is the sample size
+N=5000
+data=data.frame(times=x1,norm=dnorm(x1,theta,sqrt(sigma2)))
+
+#Image comparison of these two posterior approximation
+
+data2=data.frame(times=rep(x1,2),data=c(data$norm,data1$beta),
+                 group= rep(c("norm","mixbeta"),each = N))
+library(ggplot2)
+p=ggplot(data2, aes(x=times, y=data, group=group))
+p+geom_point(aes(colour = group),size=0.005)
+labs(title="Density Curve (MixBeta and Normal)",x="x",y="Density of x")+
+  theme(plot.title = element_text(hjust = 0.5))
