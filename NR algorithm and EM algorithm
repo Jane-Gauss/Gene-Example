@@ -1,0 +1,97 @@
+rm(list=ls())
+
+#Gene example form 'Tools for Statistical Inference'
+#Gene models-4 types of gene
+N=197 #total number
+x=c(125,18,20,34)
+
+#1. Newron-Raohson algorithm
+l_1=function(x){
+  l_1=125/(2+x)-38/(1-x)+34/x
+   return(l_1)
+}
+l_2=function(x){
+  l_2=-125/(2+x)^2-38/(1-x)^2-34/x^2
+  return(l_2)
+}
+NR=function(theta0,n){
+#theta0 is the iterative initial value
+#n is the iterations
+a=c()
+b=c()
+theta=theta0
+for(i in 1:n){
+  a=c(a,i)
+  theta=theta-l_1(theta)/l_2(theta)
+  b=cbind(b,theta)
+}
+A=list(time=a,theta=b)
+return(A)
+}
+
+#different iterative initial value
+theta0=0.25
+n=15
+NR1=NR(theta0,n)
+
+theta0=0.5
+n=15
+NR2=NR(theta0,n)
+
+theta0=0.75
+n=15
+NR3=NR(theta0,n)
+
+theta0=1.25
+n=15
+NR4=NR(theta0,n)
+
+theta0=1.5
+n=15
+NR5=NR(theta0,n)
+
+theta0=1.75
+n=15
+NR6=NR(theta0,n)
+
+
+#2. EM algorithm
+EM=function(c1,c2,c3,c4,theta0,n){
+#theta0 is the iterative initial value
+#n is the iterations
+  a=c()
+  b=c()
+  theta=theta0
+  for(i in 1:n){
+    a=c(a,i)
+    theta=(c1*theta/(2+theta)+c4)/(c1*theta/(2+theta)+c4+c2+c3)
+    b=cbind(b,theta)
+  }
+  A=list(time=a,theta=b)
+  return(A)
+}
+
+#different iterative initial value
+theta0=0.25
+n=15
+EM1=EM(x[1],x[2],x[3],x[4],theta0,n)
+
+theta0=0.5
+n=15
+EM2=EM(x[1],x[2],x[3],x[4],theta0,n)
+
+theta0=0.75
+n=15
+EM3=EM(x[1],x[2],x[3],x[4],theta0,n)
+
+theta0=1.25
+n=15
+EM4=EM(x[1],x[2],x[3],x[4],theta0,n)
+
+theta0=1.5
+n=15
+EM5=EM(x[1],x[2],x[3],x[4],theta0,n)
+
+theta0=1.75
+n=15
+EM6=EM(x[1],x[2],x[3],x[4],theta0,n)
