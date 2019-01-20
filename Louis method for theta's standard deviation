@@ -1,0 +1,33 @@
+rm(list=ls())
+#From the NR algorithm and EM algorithm, we can infer theta=0.6268215
+#Next, use Louis method to find the standard deviation of theta
+
+#1. Louis method
+theta1=0.6268215
+a=theta1/(2+theta1)*x[1]
+Q2=(a+x[4])/theta1^2+(x[2]+x[3])/((1-theta1)^2)
+H2=x[1]*2*theta1/(2+theta1)^2/theta1^2
+S=Q2-H2
+sd1=sqrt(1/S)
+
+#2. Simulation method of Louis method
+L1=function(z,x,theta){
+  l1=(z+x[4])/theta-(x[2]+x[3])/(1-theta)
+  return(l1)
+}
+L2=function(z,x,theta){
+  l2=(z+x[4])/theta^2+(x[2]+x[3])/((1-theta)^2)
+  return(l2)
+}
+SM1=function(N,x,theta){
+  #N is the iterations
+  #theta is the convergency value from EM algorithm
+  Z=rbinom(N,x[1],theta/(theta+2))
+  l1=L1(Z,x,theta)
+  H=sum(l1*l1)/N
+  Q=sum(L2(Z,x,theta))/N
+  L=Q-H
+  return(data.frame(Q=Q,H=H,L=L))
+}
+m1=SM1(N=20000,x,theta1)
+sd2=sqrt(1/m1$L)
