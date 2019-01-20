@@ -1,0 +1,69 @@
+#MCEM--Monte Carlo EM algprithm
+
+EM_MC=function(c1,c2,c3,c4,theta0,n,m,alpha){
+  #(c1,c2,c3,c4) is the number of four gene types
+  #theta0 is the iterative initial value
+  #n is the iterations
+  #m is the sample size in Monte Carlo algorithm
+  #alpha is the control parameter in Monte Carlo algorithm allowing the pre- and post- values to be different
+  #in the previous iteration，sample size is m*alpha
+  #in the late iteration，sample size is m
+  a=c()
+  b=c()
+  theta=theta0
+  m1=m*alpha
+  for(i in 1:n){
+    a=c(a,i)
+    if(i<=n/2){
+      for(j in 1:m1){
+        z=rbinom(m1,c1,theta/(theta+2))
+        z1=mean(z)
+      }
+    }else{
+      for(j in 1:m){
+        z=rbinom(m,c1,theta/(theta+2))
+        z1=mean(z)
+      }
+    }
+    theta=(z1+c4)/(z1+c4+c2+c3)
+    b=cbind(b,theta)
+  }
+  A=data.frame(time=matrix(a,nrow=n,ncol=1),theta=matrix(b,nrow=n,ncol=1))
+  return(A)
+}
+
+x=c(125,18,20,34)
+n=50
+m=1000
+alpha=0.02
+
+#different iterative initial value
+theta0=0.1
+EM_MC1=EM_MC(x[1],x[2],x[3],x[4],theta0,n,m,alpha)
+EM_MC1
+
+theta0=0.2
+EM_MC2=EM_MC(x[1],x[2],x[3],x[4],theta0,n,m,alpha)
+EM_MC2
+
+theta0=0.3
+EM_MC3=EM_MC(x[1],x[2],x[3],x[4],theta0,n,m,alpha)
+EM_MC3
+
+theta0=0.4
+EM_MC4=EM_MC(x[1],x[2],x[3],x[4],theta0,n,m,alpha)
+EM_MC4
+
+theta0=0.6
+EM_MC5=EM_MC(x[1],x[2],x[3],x[4],theta0,n,m,alpha)
+EM_MC5
+
+theta0=0.8
+EM_MC6=EM_MC(x[1],x[2],x[3],x[4],theta0,n,m,alpha)
+EM_MC6
+
+theta0=0.6268215
+EM_MC7=EM_MC(x[1],x[2],x[3],x[4],theta0,n,m,alpha)
+EM_MC7
+
+# you can also use the function to analyze the effect of different settings of m and alpha on convergence
