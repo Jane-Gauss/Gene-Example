@@ -95,3 +95,4 @@ EM5=EM(x[1],x[2],x[3],x[4],theta0,n)
 theta0=1.75
 n=15
 EM6=EM(x[1],x[2],x[3],x[4],theta0,n)
+ 
