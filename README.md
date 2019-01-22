@@ -1,4 +1,7 @@
 # Gene-Example
+
+![image]https://github.com/Jane-Gauss/Gene-Example/blob/master/gene.jpg
+
 Gene Example from 'Tools for Statistical Inference'，R code for problems listing below
 
 a. Newton Raphson Algorithm and EM algorithm to infer the parameter
