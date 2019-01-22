@@ -1,6 +1,6 @@
 # Gene-Example
 
-![image]https://github.com/Jane-Gauss/Gene-Example/blob/master/gene.jpg
+![image](https://github.com/Jane-Gauss/Gene-Example/blob/master/gene.jpg)
 
 Gene Example from 'Tools for Statistical Inference'，R code for problems listing below
 
