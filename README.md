@@ -12,4 +12,4 @@ b. Louis method and Simulation Louis method to get theta's standard deviation
 
 c. Two approximations of posterior distribution
 
-d. Monte Carlo EM algorithm for parameter inference
+d. Monte Carlo EM Algorithm for parameter inference
