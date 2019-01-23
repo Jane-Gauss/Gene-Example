@@ -6,7 +6,7 @@
 
 Gene Example from 'Tools for Statistical Inference'，R code for problems listing below
 
-a. Newton Raphson Algorithm and EM algorithm to infer the parameter
+a. Newton Raphson Algorithm and EM Algorithm to infer the parameter
 
 b. Louis method and Simulation Louis method to get theta's standard deviation
 
