@@ -39,31 +39,8 @@ alpha=0.02
 
 #different iterative initial value
 theta0=0.1
+#0.2,0.3,0.4,0.5
 EM_MC1=EM_MC(x[1],x[2],x[3],x[4],theta0,n,m,alpha)
 EM_MC1
-
-theta0=0.2
-EM_MC2=EM_MC(x[1],x[2],x[3],x[4],theta0,n,m,alpha)
-EM_MC2
-
-theta0=0.3
-EM_MC3=EM_MC(x[1],x[2],x[3],x[4],theta0,n,m,alpha)
-EM_MC3
-
-theta0=0.4
-EM_MC4=EM_MC(x[1],x[2],x[3],x[4],theta0,n,m,alpha)
-EM_MC4
-
-theta0=0.6
-EM_MC5=EM_MC(x[1],x[2],x[3],x[4],theta0,n,m,alpha)
-EM_MC5
-
-theta0=0.8
-EM_MC6=EM_MC(x[1],x[2],x[3],x[4],theta0,n,m,alpha)
-EM_MC6
-
-theta0=0.6268215
-EM_MC7=EM_MC(x[1],x[2],x[3],x[4],theta0,n,m,alpha)
-EM_MC7
 
 # you can also use the function to analyze the effect of different settings of m and alpha on convergence
