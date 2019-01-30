@@ -30,29 +30,10 @@ return(A)
 }
 
 #different iterative initial value
-theta0=0.25
+theta0=0.25 
+#0.5,0.75,1,1.25
 n=15
 NR1=NR(theta0,n)
-
-theta0=0.5
-n=15
-NR2=NR(theta0,n)
-
-theta0=0.75
-n=15
-NR3=NR(theta0,n)
-
-theta0=1.25
-n=15
-NR4=NR(theta0,n)
-
-theta0=1.5
-n=15
-NR5=NR(theta0,n)
-
-theta0=1.75
-n=15
-NR6=NR(theta0,n)
 
 
 #2. EM algorithm
@@ -76,23 +57,3 @@ theta0=0.25
 n=15
 EM1=EM(x[1],x[2],x[3],x[4],theta0,n)
 
-theta0=0.5
-n=15
-EM2=EM(x[1],x[2],x[3],x[4],theta0,n)
-
-theta0=0.75
-n=15
-EM3=EM(x[1],x[2],x[3],x[4],theta0,n)
-
-theta0=1.25
-n=15
-EM4=EM(x[1],x[2],x[3],x[4],theta0,n)
-
-theta0=1.5
-n=15
-EM5=EM(x[1],x[2],x[3],x[4],theta0,n)
-
-theta0=1.75
-n=15
-EM6=EM(x[1],x[2],x[3],x[4],theta0,n)
- 
